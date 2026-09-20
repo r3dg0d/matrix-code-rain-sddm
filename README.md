@@ -135,6 +135,20 @@ Plex Mono and a few common fallbacks, and ends at fontconfig's generic
 ## Requirements
 
 - SDDM 0.20 or newer with the Qt 6 greeter (`sddm-greeter-qt6`).
+
+  `metadata.desktop` declares `QtVersion=6`, and that line is load-bearing:
+  SDDM's daemon defaults the key to `5` and then looks for a `sddm-greeter`
+  binary, so on a Qt6-only SDDM a theme without it is skipped for the built-in
+  fallback theme — with nothing in the greeter's own output to explain why.
+  The daemon logs one line about it:
+
+  ```text
+  The theme at "…/matrix-code-rain" requires missing "…/bin/sddm-greeter". Using fallback theme.
+  ```
+
+  Note that `sddm-greeter-qt6 --test-mode --theme .` does *not* exercise this:
+  it runs the Qt6 greeter directly and never consults the metadata. Check
+  `journalctl -b -u display-manager` after a real login instead.
 - `qtdeclarative` (QtQuick). Nothing else.
 - A monospace font. Any will do; a clean coding face looks best.
 
