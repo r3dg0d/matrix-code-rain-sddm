@@ -1,0 +1,13 @@
+[SddmGreeterTheme]
+Name=Matrix Code Rain
+Description=Animated Katakana code rain over a black-and-green login panel
+Author=r3dg0d
+License=MIT
+Type=sddm-theme
+Version=1.0
+Website=https://github.com/r3dg0d/matrix-code-rain-sddm
+Screenshot=screenshot.png
+MainScript=Main.qml
+ConfigFile=theme.conf
+Theme-Id=matrix-code-rain
+Theme-API=2.0
